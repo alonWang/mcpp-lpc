@@ -44,7 +44,10 @@
 #endif
 
 #if     HOST_SYS_FAMILY == SYS_UNIX
-#include    "unistd.h"              /* For getcwd(), readlink() */
+#ifndef __USE_XOPEN_EXTENDED
+#define __USE_XOPEN_EXTENDED
+#endif
+#include    <unistd.h>              /* For getcwd(), readlink() */
 #elif   HOST_COMPILER == MSC || HOST_COMPILER == LCC
 #include    "direct.h"
 #define getcwd( buf, size)  _getcwd( buf, size)
