@@ -3212,6 +3212,10 @@ static int  open_include(
     int     has_dir_src = FALSE;
     int     has_dir_fname = FALSE;
 
+    //remove absolute path for lpc
+    if(filename[0] == PATH_DELIM){
+        memmove(filename, filename+1, strlen(filename));
+    }
     full_path = is_full_path( filename);
 
     if (!full_path && searchlocal && (search_rule & SOURCE)) {
